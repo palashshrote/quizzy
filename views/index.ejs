@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Capital City Quiz</title>
+    <title>State Capital Quiz</title>
     <link rel="stylesheet" href="/styles/main.css" />
   </head>
 
@@ -11,20 +11,20 @@
     <form class="container" action="/submit" method="post">
       <!-- <div class="horizontal-container"></div> -->
       <!-- <div class="answer-container"> -->
-        <h3>
-          Total Score:
-          <span id="score"> <%= locals.totalScore ? totalScore : "0" %> </span>
-        </h3>
-        <h1 id="countryName"><%=question.region %></h1>
+      <h3>
+        Total Score:
+        <span id="score"> <%= locals.totalScore ? totalScore : "0" %> </span>
+      </h3>
+      <h1 id="countryName"><%=question.region %></h1>
 
-        <input
-          type="text"
-          name="answer"
-          id="userInput"
-          placeholder="Enter the capital"
-          autofocus
-          autocomplete="off"
-        />
+      <input
+        type="text"
+        name="answer"
+        id="userInput"
+        placeholder="Enter the capital"
+        autofocus
+        autocomplete="off"
+      />
       <!-- </div> -->
       <button type="submit">SUBMIT</button>
       <button type="submit">END QUIZ</button>
@@ -39,7 +39,9 @@
       var completedRes = "<%= locals.completed %>";
       if (completedRes === "true") {
         console.log("finished");
-        alert("Quiz finished, You nailed it! Final best score: <%= locals.totalScore %>");
+        alert(
+          "Quiz finished, You nailed it! Final best score: <%= locals.totalScore %>"
+        );
         window.location.href = "/";
       }
     </script>
