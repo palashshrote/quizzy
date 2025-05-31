@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 // env.config();
 
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORTno;
 
 let quiz = [
   { id: "1", region: "Maharashtra", capital: "Mumbai" },
