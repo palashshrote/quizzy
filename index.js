@@ -4,7 +4,7 @@ import env from "dotenv";
 env.config();
 
 const app = express();
-const port = process.env.PORT_NO;
+const port = process.env.PORT;
 
 let quiz = [
   { id: "1", region: "Maharashtra", capital: "Mumbai" },
