@@ -9,8 +9,7 @@
 
   <body id="app">
     <form class="container" action="/submit" method="post">
-      <!-- <div class="horizontal-container"></div> -->
-      <!-- <div class="answer-container"> -->
+      
       <h3>
         Total Score:
         <span id="score"> <%= locals.totalScore ? totalScore : "0" %> </span>
@@ -25,7 +24,6 @@
         autofocus
         autocomplete="off"
       />
-      <!-- </div> -->
       <button type="submit">SUBMIT</button>
       <button type="submit">END QUIZ</button>
     </form>
