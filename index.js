@@ -1,10 +1,17 @@
 import express from "express";
 import bodyParser from "body-parser";
-// import env from "dotenv";
-// env.config();
+import mongoose from "mongoose";
+import env from "dotenv";
+env.config();
 
 const app = express();
 const port = process.env.PORT;
+
+//connecting mongoose
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.log("Error connecting to DB", err));
 
 let quiz = [
   { id: "1", region: "Maharashtra", capital: "Mumbai" },
@@ -46,6 +53,26 @@ let quizSample = [
   { id: 3, region: "Goa", capital: "Panaji" },
 ];
 
+//creating schema
+const stateSchema = new mongoose.Schema({
+  id: {
+    type: Number,
+    required: true,
+  },
+  region: {
+    type: String,
+    required: true,
+  },
+  capital: {
+    type: String,
+    required: true,
+  },
+});
+
+//creating model
+const State = mongoose.model("State", stateSchema);
+// await State.insertMany(quiz);
+// await State.deleteMany({});
 let userScore = 0;
 
 // Middleware
@@ -66,7 +93,7 @@ app.get("/", async (req, res) => {
 });
 
 // POST a new post
-app.post("/submit", (req, res) => {
+app.post("/submit", async (req, res) => {
   let answer = req.body.answer.trim();
   console.log(answer);
   let isCorrect = false;
@@ -76,11 +103,12 @@ app.post("/submit", (req, res) => {
     isCorrect = true;
     previousQuestionsId.push(randomIndex);
   }
+
   if (previousQuestionsId.length === quiz.length) {
     console.log("Quiz completed");
     endQuiz(res);
   } else {
-    nextQuestion();
+    await nextQuestion();
     res.render("index.ejs", {
       question: currentQuestion,
       wasCorrect: isCorrect,
@@ -103,7 +131,9 @@ async function nextQuestion() {
   while (previousQuestionsId.includes(randomIndex)) {
     randomIndex = Math.floor(Math.random() * quiz.length);
   }
-  const randomState = quiz[randomIndex];
+  // const randomState = quiz[randomIndex];
+  console.log(randomIndex);
+  const randomState = await State.findOne({ id: randomIndex + 1 });
   currentQuestion = randomState;
 }
 
