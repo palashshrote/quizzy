@@ -11,7 +11,7 @@ let quiz = [
   { id: "2", region: "Madhya Pradesh", capital: "Bhopal" },
   { id: "3", region: "Karnataka", capital: "Bengaluru" },
   { id: "4", region: "Telangana", capital: "Hyderabad" },
-  { id: "5", region: "Gujrat", capital: "Ahmedabad" },
+  { id: "5", region: "Gujrat", capital: "Gandhinagar" },
   { id: "6", region: "Rajasthan", capital: "Jaipur" },
   { id: "7", region: "Lakshadweep", capital: "Kavaratti" },
   { id: "8", region: "Goa", capital: "Panaji" },
